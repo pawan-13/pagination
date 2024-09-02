@@ -1,9 +1,10 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
-.outerLayer{
+
+.outerLayer {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -11,17 +12,19 @@
     gap: 4px;
     margin-top: 1rem;
 }
-.apiImage{
+
+.apiImage {
     border: 1px solid #ddd;
     box-shadow: 0px 3px 6px #00000029;
     width: 25%;
     margin-bottom: 1rem;
 }
-.apiImage img{
+
+.apiImage img {
     width: 50%;
 }
 
-.outerPLayer{
+.outerPLayer {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -29,7 +32,7 @@
     margin-bottom: 2rem;
 }
 
-.innerPlayer{
+.innerPlayer {
     font-size: 1.5rem;
     display: inline-block;
     color: white;
@@ -37,4 +40,10 @@
     padding: 0.4rem 1rem;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.active {
+    background-color: #fff;
+    color: var(--black);
+    border: 1px solid #000;
 }

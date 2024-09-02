@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { PageContext } from '../App';
-import { useContext } from 'react';
-const PageAPI = () => {
-    const {pageNo} =  useContext(PageContext);
-    try {
-    const response = axios.get(`https://fakestoreapi.in/api/products?page=${pageNo}&limit=50`);
-    console.log(response);
+const PageAPI = (pageNo ) => {
+  console.log(pageNo, 'pageNo')
+
+  try {
+    const response = axios.get(`https://picsum.photos/v2/list?page=${pageNo}&limit=5`);
+    console.log(response, 'res');
     return response;
   } catch (error) {
-    console.log('Error:',error);
+    console.log('Error:', error);
   }
 }
 export default PageAPI;

@@ -2,21 +2,19 @@ import Pagination from "./pagination";
 import PageAPI from "../api/PageApi";
 import { useQuery } from "@tanstack/react-query";
 import './styles.css';
-import { useEffect } from "react";
-import { useContext } from "react";
-import { PageContext } from "../App";
+import { useEffect, useState } from "react";
 
 
 const Page = () => {
-    const {pageNo,setPageNo} =  useContext(PageContext);
-    const { data: PageData, isLoading, isError, error } = useQuery({
-        queryKey: ['products'],
-        queryFn: PageAPI,
+    const [pageNo, setPageNo] = useState(1)
+    const { data: PageData, isLoading, isError, error, refetch } = useQuery({
+        queryKey: ['list'],
+        queryFn: () => PageAPI(pageNo),
     });
-    console.log('pagedata', PageData?.data?.products);
+    console.log('pagedata', PageData?.data);
     useEffect(() => {
-        PageAPI();
-    }, []);
+        refetch()
+    }, [pageNo, refetch]);
 
     if (isLoading) {
         return <h1>Loading....</h1>
@@ -30,14 +28,15 @@ const Page = () => {
         <>
             <div className="outerLayer">
                 {
-                    PageData?.data?.products.map((item) => {
+                    PageData?.data?.map((item) => {
+                        console.log("image", item.download_url)
                         return (
                             <div className="apiImage" key={item.id}>
-                                <img src={item.image} alt={item.image} />
+                                <img src={item.download_url} alt={item.images} />
                             </div>
                         )
                     })
-                };  
+                };
             </div>
             <Pagination pageNo={pageNo} setPageNo={setPageNo} />
         </>
